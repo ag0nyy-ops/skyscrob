@@ -63,12 +63,23 @@ If you run an instance for strangers, you're the data controller for their token
 (`PRIVACY.md` is written for this), working deletion (built), minimal retention (built:
 14-day scrobble window, no long-term history), no selling/sharing (none).
 
+## Decisions
+
+- **Self-host only** until Apple answers in writing. The "comfortable with that failure
+  mode" option is off the table: no hosted instance launches on silence.
+- **Strictly non-commercial, forever:** no paid tier, no ads, and **no donate button**. It's
+  unclear whether donations count as "indirectly monetiz[ing]" access under §3.3.6(D), so
+  they're out. That also keeps us clear of Last.fm's commercial-use agreement.
+- **Last.fm terms must be read live before any launch.** This document's Last.fm section is
+  from secondary sources (the ToS page was unreachable from the build environment).
+
+Gates and status: [`launch-checklist.md`](launch-checklist.md).
+
 ## Bottom line
 
 - **Self-hosting for yourself:** low practical risk. You're the developer and the only
   user; worst case, Apple revokes _your_ MusicKit key.
 - **Public hosted instance:** real risk that Apple reads §3.3.6(D) literally and revokes the
-  operator's key, which breaks it for everyone at once. **My recommendation: don't run a
-  public hosted instance unless you've asked Apple (Developer Support → MusicKit) and got
-  a non-objection in writing, or you're comfortable with that failure mode.** The code
-  supports hosted mode (`ALLOWED_LASTFM_USERS=*`); the decision is yours.
+  operator's key, which breaks it for everyone at once. A server holding strangers' tokens
+  isn't the same as the on-device scrobbler apps that passed App Review. **On hold until
+  Apple confirms in writing.**
