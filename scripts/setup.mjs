@@ -25,9 +25,14 @@ const die = (msg) => {
   process.exit(1);
 };
 
-console.log(
-  '\nskyscrob setup. You need: Apple Team ID, MusicKit Key ID + .p8 file, Last.fm API key + secret.\n',
-);
+console.log(`
+skyscrob setup.
+
+  Heads up: this needs a paid Apple Developer Program membership ($99/year, paid to Apple).
+  Apple requires it for any access to Apple Music listening data. There is no free option.
+
+You need: Apple Team ID, MusicKit Key ID + .p8 file, Last.fm API key + secret.
+`);
 
 // 1. Cloudflare login
 let who = wrangler(['whoami']);
@@ -44,6 +49,15 @@ const toml = readFileSync('wrangler.toml', 'utf8');
 const firstRun = /database_id = "0{8}-/.test(toml);
 const users = await ask('Your Last.fm username (only this account can use your instance; "*" = anyone)');
 if (!users) die('A Last.fm username is required (or "*" for hosted mode).');
+if (users.split(',').some((u) => u.trim() === '*')) {
+  console.log(
+    '\n"*" lets ANYONE sign in and use your Apple developer key (hosted mode).\n' +
+      'Hosted mode is on hold until Apple confirms in writing that it is allowed: see docs/launch-checklist.md.',
+  );
+  const ack = await ask('Type "I have Apple\'s written OK" to continue, anything else to stop');
+  if (ack !== "I have Apple's written OK")
+    die('Stopped. Use your own Last.fm username for a self-hosted instance.');
+}
 let secrets = {};
 if (firstRun || (await yes('Update Apple / Last.fm secrets?'))) {
   const teamId = await ask('Apple Team ID (10 chars, developer.apple.com → Membership)');
