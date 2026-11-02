@@ -20,7 +20,7 @@ export interface Env {
   /** "start" or "end"; see docs/feasibility.md. */
   DETECTION_MODE?: string;
   DETECTION_LAG_SECONDS?: string;
-  /** Users polled per cron run. Keep small on the Workers free plan (50 subrequests). */
+  /** Users polled per cron run. ~6-7 D1 queries each: <= 5 on the free plan (50/run), ~100 on Workers Paid (1,000/run). */
   POLL_BATCH_SIZE?: string;
   /** Ask Apple for album relationships (album artist). Only if the spike showed it works. */
   APPLE_INCLUDE_ALBUMS?: string;
@@ -61,7 +61,7 @@ export function loadConfig(env: Env): Config {
       mode,
       lagMs: Number.isFinite(lag) && lag >= 0 ? lag * 1000 : DEFAULT_TRACKER_CONFIG.lagMs,
     },
-    pollBatchSize: Number.isInteger(batch) && batch > 0 ? Math.min(batch, 200) : 8,
+    pollBatchSize: Number.isInteger(batch) && batch > 0 ? Math.min(batch, 200) : 5,
     includeAlbums: env.APPLE_INCLUDE_ALBUMS === 'true',
     appleApiBase: env.APPLE_API_BASE || 'https://api.music.apple.com',
     lastfmApiBase: env.LASTFM_API_BASE || 'https://ws.audioscrobbler.com/2.0/',
