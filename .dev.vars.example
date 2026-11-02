@@ -1,0 +1,10 @@
+# Copy to .dev.vars for `wrangler dev`. Never commit .dev.vars.
+APPLE_TEAM_ID=XXXXXXXXXX
+APPLE_KEY_ID=YYYYYYYYYY
+# Contents of AuthKey_YYYYYYYYYY.p8, newlines as \n
+APPLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----"
+LASTFM_API_KEY=your_lastfm_api_key
+LASTFM_API_SECRET=your_lastfm_shared_secret
+# node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+ENCRYPTION_KEY=
+ALLOWED_LASTFM_USERS=your_lastfm_username

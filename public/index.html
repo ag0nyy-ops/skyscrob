@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>skyscrob</title>
+    <meta
+      name="description"
+      content="Scrobble Apple Music to Last.fm from any device. Nothing to keep open."
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>skyscrob</h1>
+      <p class="tag">Apple Music → Last.fm, from any device, with nothing left open.</p>
+    </header>
+
+    <main id="app" aria-live="polite">
+      <p class="muted">Loading…</p>
+    </main>
+
+    <template id="signed-out">
+      <section class="card">
+        <h2>How it works</h2>
+        <ol>
+          <li>Sign in with Last.fm.</li>
+          <li>Connect Apple Music once.</li>
+          <li>Play music on your iPhone, HomePod, Watch, Mac, CarPlay. It shows up on Last.fm.</li>
+        </ol>
+        <p>
+          A server checks your Apple Music <em>recently played</em> list about once a minute while you're
+          listening and scrobbles what's new. Expect a delay of a minute or two, approximate timestamps, and
+          no back-to-back repeats of the same song.
+          <a href="https://github.com/ag0nyy-ops/lastfm-apple-music-scrobblier#limitations">Limitations</a> ·
+          <a href="https://github.com/ag0nyy-ops/lastfm-apple-music-scrobblier/blob/main/PRIVACY.md"
+            >Privacy</a
+          >
+        </p>
+        <a class="button primary" href="/auth/lastfm/login">Sign in with Last.fm</a>
+      </section>
+    </template>
+
+    <template id="dashboard">
+      <div class="banner" data-slot="banner" hidden></div>
+
+      <section class="grid">
+        <div class="card">
+          <h2>Last.fm</h2>
+          <p><span class="dot" data-slot="lfm-dot"></span> <span data-slot="lfm-status"></span></p>
+          <p class="muted">Signed in as <strong data-slot="lfm-user"></strong></p>
+        </div>
+        <div class="card">
+          <h2>Apple Music</h2>
+          <p><span class="dot" data-slot="apple-dot"></span> <span data-slot="apple-status"></span></p>
+          <p class="actions">
+            <button class="primary" data-action="connect">Connect Apple Music</button>
+            <button data-action="disconnect" hidden>Disconnect</button>
+          </p>
+        </div>
+        <div class="card">
+          <h2>Scrobbling</h2>
+          <p data-slot="poll"></p>
+          <label class="switch"><input type="checkbox" data-action="pause" /> Paused</label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Recent</h2>
+        <p class="muted small">
+          Times are estimates (Apple doesn't say when a song played). Skipped and duplicate plays are listed
+          but not sent.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>When</th>
+              <th>Track</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody data-slot="rows"></tbody>
+        </table>
+        <p class="muted" data-slot="empty" hidden>
+          Nothing yet. Play something on any of your devices; it shows up here within a couple of minutes.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Settings</h2>
+        <label><input type="checkbox" data-setting="nowPlaying" /> Show "now playing" on Last.fm</label>
+        <label
+          ><input type="checkbox" data-setting="stripSingleEp" /> Remove " - Single" / " - EP" from album
+          names</label
+        >
+        <label
+          ><input type="checkbox" data-setting="stripRemaster" /> Remove "(Remastered …)" from track and album
+          names</label
+        >
+        <label
+          ><input type="checkbox" data-setting="preferAlbumArtist" /> Use the album artist instead of the
+          track artist (when Apple provides it)</label
+        >
+      </section>
+
+      <section class="card danger">
+        <h2>Your data</h2>
+        <p class="muted small">
+          We keep your encrypted tokens, your settings, and the last 14 days of scrobbles. Nothing else.
+          Deleting removes all of it immediately. Afterwards you can also revoke access at
+          <a href="https://www.last.fm/settings/applications">last.fm/settings/applications</a>.
+        </p>
+        <p class="actions">
+          <button data-action="logout">Sign out</button>
+          <button class="destructive" data-action="delete">Delete all my data</button>
+        </p>
+      </section>
+    </template>
+
+    <footer>
+      <a href="https://github.com/ag0nyy-ops/lastfm-apple-music-scrobblier">Source</a> · No analytics, no
+      tracking.
+    </footer>
+  </body>
+</html>

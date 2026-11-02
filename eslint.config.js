@@ -18,6 +18,8 @@ export default tseslint.config(
         document: 'readonly',
         window: 'readonly',
         MusicKit: 'readonly',
+        alert: 'readonly',
+        confirm: 'readonly',
         location: 'readonly',
         URLSearchParams: 'readonly',
         URL: 'readonly',
