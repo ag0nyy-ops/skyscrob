@@ -20,11 +20,13 @@ crons = ["* * * * *"]
 enabled = true
 
 [vars]
-# Self-host: your Last.fm username (comma-separate several). "*" = anyone can sign in (hosted mode).
+# Self-host: your Last.fm username (comma-separate several).
+# "*" = anyone can sign in (hosted mode). On hold until Apple OKs it: docs/launch-checklist.md
 ALLOWED_LASTFM_USERS = ""
 # How plays show up in Apple's API: "start" (while playing) or "end" (after). See docs/feasibility.md.
 DETECTION_MODE = "start"
 DETECTION_LAG_SECONDS = "20"
-# Users polled per cron run. Free plan: keep <= 8 (50 subrequests per run).
-POLL_BATCH_SIZE = "8"
+# Users polled per cron run. Each user costs ~6-7 D1 queries.
+# Free plan (50 D1 queries per invocation): keep <= 5. Workers Paid (1,000): ~100.
+POLL_BATCH_SIZE = "5"
 APPLE_INCLUDE_ALBUMS = "false"
