@@ -75,6 +75,23 @@ architecture:
   minutes when idle. 30 items of buffer means a 10-minute gap can't lose plays (except
   repeats), only delay them.
 
+## 4b. Simulated accuracy (until real data exists)
+
+`test/tracker.test.ts` simulates a listener (25 seeds × 8 hours: 70% full plays, 15% quick
+skips, 15% partial plays, 5% back-to-back repeats, random idle stretches) against an Apple
+list with "start" semantics and a fixed 20 s lag, polled every ~60 s with idle back-off.
+Measured on 2026-11-02:
+
+| Metric                                                                                        | Result                                                     |
+| --------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| Plays that passed Last.fm's threshold and were scrobbled (recall, excl. back-to-back repeats) | **98.1%**                                                  |
+| Start-time error, median / p90 / p99                                                          | **18 s / 31 s / 218 s**                                    |
+| Quick skips (< 25 s) scrobbled anyway                                                         | **27%** (mostly short songs where a skip straddles a poll) |
+| Scrobbles that don't correspond to a real play                                                | **0** (asserted)                                           |
+| Timestamps in the future or out of order                                                      | **0** (asserted)                                           |
+
+These are numbers for the _model_, not Apple. The spike tells us whether the model is right.
+
 ## 5. Go / no-go
 
 **Provisional GO.** The API is documented, works server-side with a stored Music User Token,
