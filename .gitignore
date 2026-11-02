@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+*.p8
+*.pem
+.env
+.env.*
+# spike secrets + raw logs (raw logs may contain your listening history)
+spike/.secrets.json
+spike/logs/
+.DS_Store
