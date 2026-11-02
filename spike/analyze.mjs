@@ -16,7 +16,10 @@ if (!file) {
   process.exit(1);
 }
 const fixtureOut = rest[rest.indexOf('--fixture') + 1];
-const lines = readFileSync(file, 'utf8').trim().split('\n').map((l) => JSON.parse(l));
+const lines = readFileSync(file, 'utf8')
+  .trim()
+  .split('\n')
+  .map((l) => JSON.parse(l));
 
 const t0 = Date.parse(lines[0].t);
 const rel = (t) => `${((Date.parse(t) - t0) / 1000).toFixed(0).padStart(6)}s`;
@@ -54,10 +57,14 @@ for (const e of lines) {
       if (prevPos === k - moved.length) break;
       moved.push({ ...e.items[k], prevPos });
     }
-    const since = lastMarker ? ` (+${((Date.parse(e.t) - Date.parse(lastMarker.t)) / 1000).toFixed(0)}s after "${lastMarker.note}")` : '';
+    const since = lastMarker
+      ? ` (+${((Date.parse(e.t) - Date.parse(lastMarker.t)) / 1000).toFixed(0)}s after "${lastMarker.note}")`
+      : '';
     console.log(`${rel(e.t)}  CHANGE${since}: ${ids.length} items`);
     for (const m of moved)
-      console.log(`            new@head: ${m.artist} – ${m.name} [${m.type}, ${Math.round((m.durMs ?? 0) / 1000)}s] ${m.prevPos >= 0 ? `(was at #${m.prevPos})` : '(not in previous list)'}`);
+      console.log(
+        `            new@head: ${m.artist} – ${m.name} [${m.type}, ${Math.round((m.durMs ?? 0) / 1000)}s] ${m.prevPos >= 0 ? `(was at #${m.prevPos})` : '(not in previous list)'}`,
+      );
     const removed = prevIds.filter((id) => !ids.includes(id));
     if (removed.length) console.log(`            fell off the end: ${removed.length}`);
   }
@@ -66,7 +73,9 @@ for (const e of lines) {
 
 console.log('\nHTTP statuses:', statuses);
 console.log('Rate-limit-ish headers seen:', [...rateHeaders].join(', ') || 'none');
-const dupes = lines.filter((e) => e.kind === 'poll' && e.items).some((e) => new Set(e.items.map((i) => i.id)).size !== e.items.length);
+const dupes = lines
+  .filter((e) => e.kind === 'poll' && e.items)
+  .some((e) => new Set(e.items.map((i) => i.id)).size !== e.items.length);
 console.log('Any duplicate track ids inside a single response:', dupes);
 
 if (fixtureOut && rest.includes('--fixture')) {
