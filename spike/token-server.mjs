@@ -53,8 +53,14 @@ createServer((req, res) => {
       try {
         const { musicUserToken } = JSON.parse(body);
         if (typeof musicUserToken !== 'string' || musicUserToken.length < 20) throw new Error('bad token');
-        writeFileSync(SECRETS_PATH, JSON.stringify({ developerToken, musicUserToken, savedAt: new Date().toISOString() }, null, 2), { mode: 0o600 });
-        console.log(`Music User Token saved to ${SECRETS_PATH} (length ${musicUserToken.length}). Next: node spike/poll.mjs`);
+        writeFileSync(
+          SECRETS_PATH,
+          JSON.stringify({ developerToken, musicUserToken, savedAt: new Date().toISOString() }, null, 2),
+          { mode: 0o600 },
+        );
+        console.log(
+          `Music User Token saved to ${SECRETS_PATH} (length ${musicUserToken.length}). Next: node spike/poll.mjs`,
+        );
         res.writeHead(204).end();
       } catch {
         res.writeHead(400).end();

@@ -30,19 +30,19 @@ Enter, the moment you do it. That's a timestamped marker; it's how we measure de
 
 ## 3. Do these on your iPhone (type the marker right as you tap)
 
-| # | What to do | Markers to type |
-|---|---|---|
-| 1 | Play a song you haven't played today, let it **finish** | `A play`, then `A end` |
-| 2 | Play another song, **skip after ~10s** | `B play`, `B skip` |
-| 3 | Play a song, skip at **~60%** | `C play`, `C skip` |
-| 4 | Play a song to the end, then **immediately play the same song again** (or repeat-one) to the end | `D play`, `D again`, `D end` |
-| 5 | Play song **A** again (it's further down the list now) | `A replay` |
-| 6 | Play **3 tracks of an album** in order, no skipping | `album start`, `album end` |
-| 7 | Play an **artist/genre station** for 2 songs | `station start`, `station end` |
-| 8 | Play **Apple Music 1 (live radio)** for ~2 min | `live start`, `live stop` |
-| 9 | **Pause** a song at ~30s, wait 5 min, then stop | `E play`, `E pause` |
-| 10 | Open Music on your **Mac**, play one song fully, quit it | `mac play`, `mac end` |
-| 11 | Stop playing for **15 min** (leave poller running) | `idle` |
+| #   | What to do                                                                                       | Markers to type                |
+| --- | ------------------------------------------------------------------------------------------------ | ------------------------------ |
+| 1   | Play a song you haven't played today, let it **finish**                                          | `A play`, then `A end`         |
+| 2   | Play another song, **skip after ~10s**                                                           | `B play`, `B skip`             |
+| 3   | Play a song, skip at **~60%**                                                                    | `C play`, `C skip`             |
+| 4   | Play a song to the end, then **immediately play the same song again** (or repeat-one) to the end | `D play`, `D again`, `D end`   |
+| 5   | Play song **A** again (it's further down the list now)                                           | `A replay`                     |
+| 6   | Play **3 tracks of an album** in order, no skipping                                              | `album start`, `album end`     |
+| 7   | Play an **artist/genre station** for 2 songs                                                     | `station start`, `station end` |
+| 8   | Play **Apple Music 1 (live radio)** for ~2 min                                                   | `live start`, `live stop`      |
+| 9   | **Pause** a song at ~30s, wait 5 min, then stop                                                  | `E play`, `E pause`            |
+| 10  | Open Music on your **Mac**, play one song fully, quit it                                         | `mac play`, `mac end`          |
+| 11  | Stop playing for **15 min** (leave poller running)                                               | `idle`                         |
 
 Then Ctrl+C the poller and run the rate-limit probe (one burst, ~1 min):
 

@@ -5,14 +5,14 @@ Status: **desk research done; live spike pending** (needs a real Apple Music acc
 
 ## 1. What already exists (checked 2026-11-02)
 
-| Project | How it gets plays | Why it doesn't solve this |
-|---|---|---|
-| FastScrobbler (iOS/macOS app) | On-device; has an *experimental* Apple Music API import of the last 30 recently played tracks, estimates timestamps | An app on your phone. The API importer isn't in its public source; license is personal-use only, no redistribution. No server. |
-| bijou.fm, QuietScrob, Scrobbly (iOS apps) | On-device listening history / background refresh | Closed source, need an app on the phone, best-effort background behaviour, reviews report missed plays when the app isn't alive. |
-| ripleyintheair/apple-music-lastfm-scrobbler (Python, macOS) | AppleScript reads Music.app's synced play history every 5 min | Needs a Mac running with Music open. Not device-independent. |
-| Scrobbles for Last.fm, Scrobblr, Audioscrobbler (macOS) | Local Music.app now-playing | Only scrobbles what plays on that Mac. |
-| osfv/AppleMusicScrobbler, SpaceChildDev/lastfm-scrobbler (Windows) | Windows media session | Only that PC. |
-| "ScrobbleCloud" (scrobblecloud.com) | Claims cloud scrobbling "even when the app is closed" | Couldn't reach the site from the build environment; no source, no technical detail found. Can't evaluate. Not open source. |
+| Project                                                            | How it gets plays                                                                                                   | Why it doesn't solve this                                                                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| FastScrobbler (iOS/macOS app)                                      | On-device; has an _experimental_ Apple Music API import of the last 30 recently played tracks, estimates timestamps | An app on your phone. The API importer isn't in its public source; license is personal-use only, no redistribution. No server.   |
+| bijou.fm, QuietScrob, Scrobbly (iOS apps)                          | On-device listening history / background refresh                                                                    | Closed source, need an app on the phone, best-effort background behaviour, reviews report missed plays when the app isn't alive. |
+| ripleyintheair/apple-music-lastfm-scrobbler (Python, macOS)        | AppleScript reads Music.app's synced play history every 5 min                                                       | Needs a Mac running with Music open. Not device-independent.                                                                     |
+| Scrobbles for Last.fm, Scrobblr, Audioscrobbler (macOS)            | Local Music.app now-playing                                                                                         | Only scrobbles what plays on that Mac.                                                                                           |
+| osfv/AppleMusicScrobbler, SpaceChildDev/lastfm-scrobbler (Windows) | Windows media session                                                                                               | Only that PC.                                                                                                                    |
+| "ScrobbleCloud" (scrobblecloud.com)                                | Claims cloud scrobbling "even when the app is closed"                                                               | Couldn't reach the site from the build environment; no source, no technical detail found. Can't evaluate. Not open source.       |
 
 **Conclusion:** I found nothing open-source and self-hostable that scrobbles Apple Music
 server-side from any device. Building it is justified.
@@ -42,16 +42,16 @@ From the developer forums / community (unverified until the spike):
 
 ## 3. What only the spike can answer
 
-| Question | Why it matters | Result |
-|---|---|---|
+| Question                                                        | Why it matters                                  | Result    |
+| --------------------------------------------------------------- | ----------------------------------------------- | --------- |
 | When does a play appear: at start, after N seconds, at the end? | Decides now-playing support and the skip filter | _pending_ |
-| Do skipped / short plays appear at all? | If Apple filters skips, we don't need to | _pending_ |
-| Back-to-back repeat: any visible change? | Whether repeats are 100% invisible | _pending_ |
-| Replay of an older song: does it jump to the top? | Core assumption of the diff algorithm | _pending_ |
-| Stations / Apple Music 1 live radio: do tracks show? | Coverage | _pending_ |
-| iPhone vs. Mac: same behaviour? | Coverage | _pending_ |
-| Rate limit: when do 429s start, any headers? | Poll budget per developer token | _pending_ |
-| Does `include=albums` work on this endpoint? | "Prefer album artist" option | _pending_ |
+| Do skipped / short plays appear at all?                         | If Apple filters skips, we don't need to        | _pending_ |
+| Back-to-back repeat: any visible change?                        | Whether repeats are 100% invisible              | _pending_ |
+| Replay of an older song: does it jump to the top?               | Core assumption of the diff algorithm           | _pending_ |
+| Stations / Apple Music 1 live radio: do tracks show?            | Coverage                                        | _pending_ |
+| iPhone vs. Mac: same behaviour?                                 | Coverage                                        | _pending_ |
+| Rate limit: when do 429s start, any headers?                    | Poll budget per developer token                 | _pending_ |
+| Does `include=albums` work on this endpoint?                    | "Prefer album artist" option                    | _pending_ |
 
 ## 4. Provisional design (built so the spike results only tune constants)
 

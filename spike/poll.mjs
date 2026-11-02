@@ -71,7 +71,8 @@ if (BURST > 0) {
     const r = await get(`/v1/me/recent/played/tracks?types=${TYPES}&limit=1`);
     counts[r.status] = (counts[r.status] || 0) + 1;
     log({ kind: 'burst', i, status: r.status, ms: r.ms, headers: r.headers, errors: r.body?.errors });
-    if (r.status === 429) console.log(`429 after ${i + 1} requests, retry-after=${r.headers?.['retry-after']}`);
+    if (r.status === 429)
+      console.log(`429 after ${i + 1} requests, retry-after=${r.headers?.['retry-after']}`);
   }
   console.log('Status counts:', counts, `\nLog: ${logPath}`);
   process.exit(0);
@@ -118,9 +119,13 @@ async function tick() {
     errors: r.status === 200 ? undefined : r.body,
   });
   const ts = new Date().toLocaleTimeString();
-  if (r.status !== 200) console.log(`${ts} HTTP ${r.status} ${JSON.stringify(r.body?.errors ?? r.error ?? '')}`);
+  if (r.status !== 200)
+    console.log(`${ts} HTTP ${r.status} ${JSON.stringify(r.body?.errors ?? r.error ?? '')}`);
   else if (changed) {
-    const top = items.slice(0, 3).map((i) => `${i.artist} – ${i.name}`).join(' | ');
+    const top = items
+      .slice(0, 3)
+      .map((i) => `${i.artist} – ${i.name}`)
+      .join(' | ');
     console.log(`${ts} CHANGED (${items.length} items) head: ${top}`);
   }
   if (sig !== null) prev = sig;

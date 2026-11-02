@@ -9,14 +9,14 @@ source terms yourself.
 Source: <https://developer.apple.com/support/terms/apple-developer-program-license-agreement/>
 (fetched and quoted 2026-11-02).
 
-| Clause (quoted) | How skyscrob relates | Risk |
-|---|---|---|
-| "You agree not to call the MusicKit APIs or use MusicKit JS ... for purposes unrelated to facilitating access to Your end users' Apple Music subscriptions." | We read the user's own listening history on their behalf, at their request. Arguably "facilitating access to their subscription data". Arguably not, since we don't play anything. | **Medium. The main ambiguity.** |
-| "album art and music-related text from the MusicKit API may not be used separately from music playback or managing playlists" | We forward track/artist/album names to Last.fm, separately from playback. Read literally, this is the clause we're closest to breaking. | **Medium–high (literal reading)** |
-| "Metadata from users (such as playlists and favorites) may be used only to provide a service or function that is clearly disclosed to end users and that is directly relevant to the use of Your Application" | Scrobbling *is* the disclosed function. The onboarding page says exactly what's read and where it goes. | Low, if disclosed (we do) |
-| "You agree not to require payment for or indirectly monetize access to the Apple Music service ... (e.g. in-app purchase, advertising, requesting user info)" | skyscrob is free, no ads, no analytics. A hosted instance must stay that way. Don't add a paid tier. | Low (as built) |
-| "You may use MusicKit JS only as a stand-alone library ... (e.g., You agree not to recombine MusicKit JS with any other JavaScript code or separately download and re-host it)" | We load it from Apple's CDN (`js-cdn.music.apple.com`), never bundle or re-host it. | Low |
-| "If You access the MusicKit APIs or MusicKit JS, then You must follow the Apple Music Identity Guidelines." | The product name doesn't contain "Apple" or "Apple Music". We refer to "Apple Music" by name only to describe what it connects to. No Apple logos. | Low |
+| Clause (quoted)                                                                                                                                                                                               | How skyscrob relates                                                                                                                                                               | Risk                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| "You agree not to call the MusicKit APIs or use MusicKit JS ... for purposes unrelated to facilitating access to Your end users' Apple Music subscriptions."                                                  | We read the user's own listening history on their behalf, at their request. Arguably "facilitating access to their subscription data". Arguably not, since we don't play anything. | **Medium. The main ambiguity.**   |
+| "album art and music-related text from the MusicKit API may not be used separately from music playback or managing playlists"                                                                                 | We forward track/artist/album names to Last.fm, separately from playback. Read literally, this is the clause we're closest to breaking.                                            | **Medium–high (literal reading)** |
+| "Metadata from users (such as playlists and favorites) may be used only to provide a service or function that is clearly disclosed to end users and that is directly relevant to the use of Your Application" | Scrobbling _is_ the disclosed function. The onboarding page says exactly what's read and where it goes.                                                                            | Low, if disclosed (we do)         |
+| "You agree not to require payment for or indirectly monetize access to the Apple Music service ... (e.g. in-app purchase, advertising, requesting user info)"                                                 | skyscrob is free, no ads, no analytics. A hosted instance must stay that way. Don't add a paid tier.                                                                               | Low (as built)                    |
+| "You may use MusicKit JS only as a stand-alone library ... (e.g., You agree not to recombine MusicKit JS with any other JavaScript code or separately download and re-host it)"                               | We load it from Apple's CDN (`js-cdn.music.apple.com`), never bundle or re-host it.                                                                                                | Low                               |
+| "If You access the MusicKit APIs or MusicKit JS, then You must follow the Apple Music Identity Guidelines."                                                                                                   | The product name doesn't contain "Apple" or "Apple Music". We refer to "Apple Music" by name only to describe what it connects to. No Apple logos.                                 | Low                               |
 
 **Precedent:** several App Store apps (FastScrobbler, bijou.fm, others) read the same
 recently-played data via MusicKit and send it to Last.fm, and passed App Review. That shows
@@ -46,7 +46,7 @@ live page before running a hosted instance.
   played.
 - **Scrobbling rules** (from the scrobbling docs): only tracks longer than 30 seconds; only
   after half the track or 4 minutes have played (whichever is first); timestamp = when the
-  track *started*, UTC; at most 50 scrobbles per batch request. Old timestamps get ignored
+  track _started_, UTC; at most 50 scrobbles per batch request. Old timestamps get ignored
   (we treat the cut-off as 14 days).
 - **Accuracy:** scrobbles are meant to reflect actual listening. Our timestamps are
   estimated (the Apple API has no play times). That's the same thing every offline/cached
@@ -66,7 +66,7 @@ If you run an instance for strangers, you're the data controller for their token
 ## Bottom line
 
 - **Self-hosting for yourself:** low practical risk. You're the developer and the only
-  user; worst case, Apple revokes *your* MusicKit key.
+  user; worst case, Apple revokes _your_ MusicKit key.
 - **Public hosted instance:** real risk that Apple reads §3.3.6(D) literally and revokes the
   operator's key, which breaks it for everyone at once. **My recommendation: don't run a
   public hosted instance unless you've asked Apple (Developer Support → MusicKit) and got
