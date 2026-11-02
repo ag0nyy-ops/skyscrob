@@ -1,0 +1,33 @@
+{
+  "name": "skyscrob",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cloud Apple Music to Last.fm scrobbler. Runs on Cloudflare Workers, nothing to keep open on your devices.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "setup": "node scripts/setup.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "secrets:scan": "node scripts/scan-secrets.mjs"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20261102.1",
+    "@eslint/js": "10.0.1",
+    "@types/node": "22.20.5",
+    "eslint": "10.14.0",
+    "prettier": "3.9.10",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1",
+    "vitest": "5.1.0",
+    "wrangler": "4.156.2"
+  }
+}
