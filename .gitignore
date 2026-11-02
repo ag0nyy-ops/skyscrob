@@ -13,3 +13,6 @@ coverage/
 spike/.secrets.json
 spike/logs/
 .DS_Store
+# local AI assistant config, never part of the project
+CLAUDE.md
+.claude/
