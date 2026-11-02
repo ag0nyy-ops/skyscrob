@@ -1,0 +1,34 @@
+name: Bug report
+description: Something isn't scrobbling right, or something broke.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Please **never** paste tokens, session keys, `.p8` contents or `.dev.vars` here.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: plays
+    attributes:
+      label: The plays involved
+      description: Songs, roughly when you played them, on which device, and what showed up on Last.fm (with times).
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Instance
+      options: [Self-hosted, Someone else's hosted instance]
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version / commit
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant `wrangler tail` output (no tokens are logged, but double-check)
+      render: text

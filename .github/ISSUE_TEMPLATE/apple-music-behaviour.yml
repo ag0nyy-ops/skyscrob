@@ -1,0 +1,19 @@
+name: Apple Music API behaviour report
+description: Share data from the spike (spike/README.md) about how recently-played behaves.
+labels: [data]
+body:
+  - type: textarea
+    id: output
+    attributes:
+      label: Output of `node spike/analyze.mjs <log>`
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: region
+    attributes:
+      label: Apple Music storefront / country
+  - type: input
+    id: devices
+    attributes:
+      label: Devices used (iPhone model + iOS version, Mac, HomePod...)
