@@ -2,7 +2,7 @@
   "name": "skyscrob",
   "version": "0.1.0",
   "private": true,
-  "description": "Cloud Apple Music to Last.fm scrobbler. Runs on Cloudflare Workers, nothing to keep open on your devices.",
+  "description": "Self-hosted Apple Music to Last.fm scrobbler on Cloudflare Workers. Scrobbles from any device, nothing to keep open. Requires an Apple Developer Program membership ($99/yr).",
   "license": "MIT",
   "type": "module",
   "engines": {

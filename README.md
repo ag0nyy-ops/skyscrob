@@ -2,7 +2,21 @@
 
 **Scrobble Apple Music to Last.fm from any device: iPhone, HomePod, Apple Watch, CarPlay, Mac.
 Nothing to install or keep open on your devices.** Connect Apple Music and Last.fm once, and a
-small server (a free Cloudflare Worker) does the rest in the background.
+small server you run on Cloudflare does the rest in the background.
+
+> [!IMPORTANT]
+> **This is not free.** To run skyscrob you need your own **Apple Developer Program membership,
+> $99/year.** Apple requires it for any access to a user's Apple Music listening data. There is
+> no free tier and no way around it. Cloudflare (free plan) and Last.fm (API key) cost nothing.
+>
+> **There is no public hosted version.** Self-host only, with your own Apple developer account.
+> A shared instance is on hold until Apple confirms in writing that it's allowed
+> ([why](docs/tos-notes.md)).
+
+![skyscrob dashboard demo: sign in, connect, a song plays and gets scrobbled](docs/demo.gif)
+
+<sub>Demo recorded against the bundled mock Apple Music / Last.fm servers
+(`scripts/mock-upstreams.mjs`), sped up. Not real listening data.</sub>
 
 > Status: **v0.x, early.** The scrobble engine is tested heavily against simulated listening and
 > fake Apple/Last.fm servers. The real-world behaviour of Apple's API (exact delay, edge cases) is
@@ -62,11 +76,13 @@ Apple's API was not built for this. Read these before relying on it:
 - **Apple Music User Tokens expire** (reportedly ~6 months). The dashboard shows a banner and
   you click _Reconnect_. Nothing is scrobbled until you do.
 
-## Self-host (recommended)
+## Self-host
 
-You run your own copy with your own keys. It costs **$99/year** for the Apple Developer Program
-(Apple requires it for any Apple Music API access; there's no free tier). Cloudflare and Last.fm
-are free.
+You run your own copy with your own keys. Self-hosting is currently the only way to use skyscrob.
+
+**Cost: $99/year**, for the Apple Developer Program, paid to Apple. Apple requires it for any
+Apple Music API access, and there's no free tier. Cloudflare's free plan and the Last.fm API
+are free. skyscrob itself is free and open source and will stay non-commercial.
 
 ### What you need
 
@@ -133,17 +149,30 @@ git pull && npm install && npx wrangler d1 migrations apply skyscrob --remote &&
 ### Costs and limits on Cloudflare's free plan
 
 One cron run per minute = ~1,440 Worker invocations/day plus your dashboard visits, well under
-the free 100k/day. Each run polls up to `POLL_BATCH_SIZE` users (default 8) to stay inside the
-free plan's 50-subrequests-per-invocation limit. That's plenty for yourself, family and friends.
+the free 100k/day. Each run polls up to `POLL_BATCH_SIZE` users (default 5). Each user costs
+about 6–7 D1 queries per run, and the free plan allows 50 per invocation. That's plenty for
+yourself and a few friends. Beyond that, see below.
 
-## Hosted mode (multi-user)
+## Hosted mode (on hold)
 
-Set `ALLOWED_LASTFM_USERS = "*"` and anyone can sign in. The code is built for it (encrypted
-tokens, per-user leases, rate limits, delete-my-data). **Before running a public instance, read
-[`docs/tos-notes.md`](docs/tos-notes.md).** Apple's MusicKit terms have a clause about using
-"music-related text" apart from playback, and an operator's key could be revoked for everyone
-at once. For more than a few dozen users you'll want the Workers paid plan and a higher
-`POLL_BATCH_SIZE`.
+The code supports a shared multi-user instance (`ALLOWED_LASTFM_USERS = "*"`): encrypted tokens,
+per-user leases, rate limits, delete-my-data. **Nobody should run one yet.** Here's what has to be
+true first ([`docs/launch-checklist.md`](docs/launch-checklist.md)):
+
+1. **Apple's written OK.** Apple's MusicKit terms restrict using "music-related text" apart from
+   playback. On-device scrobbler apps exist, but a server holding strangers' tokens is a
+   different thing. If Apple objects, the operator's key gets revoked and everyone breaks at
+   once. Asked; no answer yet.
+2. **Last.fm's API terms, checked live** for a multi-user service. They couldn't be fetched when
+   the notes in `docs/tos-notes.md` were written.
+3. **Strictly non-commercial.** No paid tier, no ads, and no donate button either: Apple bans
+   "indirectly monetizing" access, and it's unclear whether donations count. Last.fm needs a
+   separate agreement for commercial use.
+4. **The operator pays for everything:** $99/yr Apple Developer Program plus the Workers Paid
+   plan ($5/month at the time of writing).
+5. **Scale settings:** on Workers Paid (1,000 D1 queries per invocation) set
+   `POLL_BATCH_SIZE = "100"`, which polls up to ~100 users a minute. Past a few hundred active
+   users, move polling to Cloudflare Queues ([`docs/future.md`](docs/future.md)).
 
 ## Privacy
 
@@ -168,7 +197,7 @@ Server-side (`wrangler.toml` → `[vars]`):
 | `ALLOWED_LASTFM_USERS`  | (setup sets it) | Comma-separated Last.fm usernames allowed to sign in, or `*`                 |
 | `DETECTION_MODE`        | `start`         | Whether Apple lists a song when it starts (`start`) or after it ends (`end`) |
 | `DETECTION_LAG_SECONDS` | `20`            | Typical delay before a play shows up in Apple's list                         |
-| `POLL_BATCH_SIZE`       | `8`             | Users polled per cron run                                                    |
+| `POLL_BATCH_SIZE`       | `5`             | Users polled per cron run (free plan: ≤ 5; Workers Paid: ~100)               |
 | `APPLE_INCLUDE_ALBUMS`  | `false`         | Ask Apple for album data (album artist)                                      |
 
 ## Troubleshooting
