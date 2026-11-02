@@ -11,6 +11,8 @@
 import { createServer } from 'node:http';
 
 const PORT = Number(process.env.PORT || 8799);
+// Song length for every mock track. Short songs make demos quick (threshold = half the song).
+const DURATION_MS = Number(process.env.MOCK_DURATION_S || 180) * 1000;
 let list = [];
 const state = { scrobbles: [], nowPlaying: [], sessions: {} };
 
@@ -21,7 +23,7 @@ const songs = () =>
     return {
       id,
       type: 'songs',
-      attributes: { name, artistName: artist, albumName: `${name} - Single`, durationInMillis: 180000 },
+      attributes: { name, artistName: artist, albumName: name, durationInMillis: DURATION_MS },
     };
   });
 
