@@ -229,7 +229,7 @@ export async function pollUser(env: Env, deps: Deps, cfg: Config, userId: string
   if (result.event !== 'unchanged') {
     log('poll', {
       user: user.id,
-      event: result.event,
+      result: result.event,
       planned: result.scrobbles.length,
       skipped: result.skipped.length,
     });
