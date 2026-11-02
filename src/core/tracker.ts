@@ -108,6 +108,9 @@ function baselineFrom(s: TrackerState, tracks: Track[], keys: string[], now: num
       ? { track: top, startMs: now, uncertaintyMs: 0, baseline: true, done: true }
       : null;
   s.anomaly = null;
+  // Connecting (or re-baselining) counts as activity: poll fast for a while, since the user
+  // is probably about to play something.
+  s.lastChangeMs = now;
 }
 
 /**
