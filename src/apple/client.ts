@@ -49,7 +49,7 @@ export async function fetchRecentTracks(opts: {
   musicUserToken: string;
   includeAlbums?: boolean;
 }): Promise<AppleResult> {
-  const url = new URL('/v1/me/recent/played/tracks', opts.base);
+  const url = new URL(`${opts.base.replace(/\/+$/, '')}/v1/me/recent/played/tracks`);
   url.searchParams.set('types', 'songs,library-songs');
   url.searchParams.set('limit', '30');
   if (opts.includeAlbums) url.searchParams.set('include', 'albums');

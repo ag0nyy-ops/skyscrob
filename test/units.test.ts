@@ -148,6 +148,17 @@ describe('Apple client', () => {
     const r = seen as unknown as Request;
     const u = new URL(r.url);
     expect(u.pathname).toBe('/v1/me/recent/played/tracks');
+    // A base with a path (proxy, local mock) keeps its path.
+    await fetchRecentTracks({
+      fetch: (async (i: RequestInfo, init?: RequestInit) => {
+        seen = new Request(i, init);
+        return Response.json({ data: [] });
+      }) as typeof fetch,
+      base: 'http://localhost:8799/apple/',
+      developerToken: 'dev',
+      musicUserToken: 'mut',
+    });
+    expect(new URL((seen as unknown as Request).url).pathname).toBe('/apple/v1/me/recent/played/tracks');
     expect(u.searchParams.get('types')).toBe('songs,library-songs');
     expect(u.searchParams.get('limit')).toBe('30');
     expect(r.headers.get('authorization')).toBe('Bearer dev');
