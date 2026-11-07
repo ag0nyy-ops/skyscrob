@@ -31,6 +31,10 @@ those, your Apple Music **recently played** list, from the cloud.
 
 ## How it works
 
+![Diagram (not a screenshot): your devices play songs, Apple Music lists them as recently played, skyscrob polls that list every minute and sends now playing and scrobbles to Last.fm](assets/skyscrob-diagram.png)
+
+<sub>Diagram, not a screenshot. The log lines are the real format from `src/service.ts`.</sub>
+
 ```
  your devices ──play──▶ Apple Music ──"recently played" list──▶ skyscrob (Cloudflare Worker, every minute)
                                                                     │  diff against last snapshot
