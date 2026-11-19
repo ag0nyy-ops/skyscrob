@@ -105,7 +105,7 @@ are free. skyscrob itself is free and open source and will stay non-commercial.
 ### Install (about 5 minutes)
 
 ```bash
-git clone https://github.com/ag0nyy-ops/lastfm-apple-music-scrobblier.git skyscrob
+git clone https://github.com/ag0nyy-ops/skyscrob.git
 ```
 
 ```bash
