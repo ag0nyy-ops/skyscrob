@@ -1,21 +1,165 @@
-MIT License
+Source-Available License (view and learn only), version 3
 
-Copyright (c) 2026 ag0nyy-ops
+Copyright (c) 2026 Jaymz (github.com/ag0nyy-ops). All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+0. Definitions
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+   "The Work" means everything in this repository that I made or own:
+   code, markup, styles, scripts, docs, graphics, and data I created or
+   arranged. Section 5 lists what is not part of it.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+   "The Official Repository" means this repository at
+   github.com/ag0nyy-ops, and only that copy, as I committed it.
+
+   "Copy" means reproducing the Work or any part of it in any form,
+   including:
+   a. pasting, downloading or saving it into anything else;
+   b. rewriting, paraphrasing, renaming or restructuring it while you
+      have the Work open, or while working from notes or memory of its
+      specific code;
+   c. translating or porting it to another programming language or
+      framework;
+   d. giving it to an AI tool, code generator or other person to
+      rewrite, summarise into code, or reproduce, and using the result;
+   e. reproducing the sequence, structure and organization of its
+      specific code. Standard project layouts that a framework or tool
+      generates (for example Tauri, Cargo or Xcode templates) are not
+      part of the Work.
+
+   "Personal Use" means use by one individual, for themselves, that is
+   not commercial and not done for or on behalf of any business,
+   school, organization or client.
+
+1. What you may do
+
+   a. View, read and study the Work on GitHub.
+   b. Clone or download the Work to your own device, and keep that
+      copy, only to study it. You may change and build that copy
+      to learn how it works, as Personal Use, as long as you never
+      share, publish, host or run the changed version for anyone else.
+   c. Download and run release builds I publish in the Official
+      Repository, unchanged, as Personal Use.
+   d. Use the general ideas and concepts you learn here in your own
+      work, if you write your own code without doing anything listed
+      under "Copy". Copyright protects my code, not the ideas behind
+      it, and this license doesn't claim otherwise.
+   e. Quote short excerpts (no more than 15 lines each, and no more
+      than 50 lines from any one repository in total) for
+      non-commercial commentary, teaching or review, crediting Jaymz
+      (ag0nyy-ops) with a link to the Official Repository. A
+      walkthrough or course covering a substantial part of the Work
+      needs my permission.
+
+2. What you may not do without my permission (section 7)
+
+   a. Copy the Work, or any part of it, into anything outside your own
+      study copy under 1b.
+   b. Distribute, publish, host, deploy, sell, rent or sublicense the
+      Work or any changed version of it, as source or as a build.
+   c. Use the Work, any part of it, or any changed version, in any
+      other project or for anything other than Personal Use.
+   d. Use the Work, or any part of it, to train, fine-tune, evaluate
+      or build any AI or machine-learning model or dataset, or add it
+      to any such dataset.
+   e. Remove or change this license or any copyright notice.
+
+3. GitHub
+
+   GitHub's Terms of Service give GitHub users certain rights in public
+   repositories, such as viewing and forking them on GitHub. Those
+   rights stand as GitHub's terms define them, and this license does
+   not take them away. Beyond what those terms require, a fork is
+   still covered by every term here. Turning on GitHub
+   Pages for a fork, publishing builds or releases from a fork (with
+   GitHub Actions or otherwise), creating a repository from this one
+   as a template, and any similar GitHub feature that makes the Work
+   or a changed version available to others all count as hosting or
+   distributing under section 2b.
+
+4. Parts you may copy
+
+   A part of the Work may be copied only if it carries one of these
+   markers, in the Official Repository, committed by me:
+
+   a. A whole file: a comment containing
+          SPDX-License-Identifier: MIT
+      (or another named license) within the file's first 5 lines.
+      That file is then under that license.
+   b. A block: code between a comment containing exactly
+          COPY-OK BEGIN (MIT)
+      and the next comment containing exactly
+          COPY-OK END
+      in the same file. That block is under the MIT License. A BEGIN
+      with no matching END grants nothing.
+
+   A marker only counts if it is an actual comment in source code. Text
+   inside a string, a test fixture, sample data, a README or other
+   documentation is not a marker. Markers added by anyone else,
+   including in a fork or in a contribution I merged, do not count.
+
+   Copying marked code gives you no rights in any unmarked code it
+   calls or depends on. When you copy marked code, you must follow the
+   license it names in full; for MIT that means including the
+   copyright line above and the full MIT permission notice.
+
+5. What this license does not cover
+
+   a. Third-party code, fonts, assets and data, which keep their own
+      licenses or terms, named in the README or next to those files.
+   b. Facts, and public-domain data (for example US government data)
+      as such. My own selection and arrangement of it is still covered.
+   c. Anything the law lets you do without permission, such as fair
+      use. This license claims no more than the law and your agreement
+      to it allow.
+
+6. Contributions
+
+   If you send me a contribution (a pull request, patch, issue code
+   or similar), you keep your copyright, and you give me a permanent,
+   worldwide, royalty-free, irrevocable license to use, change, publish
+   and relicense it as part of the Work, under this license or any
+   other. You confirm you have the right to give it. Contributions do
+   not add markers under section 4.
+
+7. Permission
+
+   Permission only counts if it comes from me in writing: a message
+   from the GitHub account ag0nyy-ops, or a message I send that
+   clearly comes from me, that names who it is for, which repository
+   or files, and what is allowed. It covers only what it names, and
+   nothing more.
+
+8. Accepting these terms
+
+   The README of the Official Repository opens with a notice that the
+   Work is covered by this license. Cloning, forking, downloading, building or running the Work, or
+   using it in any way beyond viewing it in a web browser, means you
+   accept these terms. If you don't accept them, your only rights are
+   the ones the law gives you without a license.
+
+9. Ending
+
+   If you break these terms, every permission you had under this
+   license ends automatically. You must then delete every copy of the
+   Work you control, including clones, forks on GitHub or anywhere
+   else, and any changed versions.
+
+10. Earlier versions
+
+   This version applies to copies of the Work obtained on or after the
+   date it was committed to the Official Repository. Copies obtained
+   earlier keep the terms they came with, including any MIT License
+   grant, for the code as it was then.
+
+11. Severability
+
+   If any part of this license is held unenforceable, it is limited to
+   the minimum extent needed, and the rest of this license stays in
+   full effect.
+
+12. No warranty
+
+   THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES
+   OR OTHER LIABILITY ARISING FROM, OUT OF OR IN CONNECTION WITH THE WORK
+   OR ITS USE.
