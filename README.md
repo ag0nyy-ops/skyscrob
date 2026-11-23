@@ -1,3 +1,5 @@
+> **License:** source-available, view and learn only. Not open source. See [LICENSE](LICENSE) before cloning, forking or using this code.
+
 # skyscrob
 
 **Scrobble Apple Music to Last.fm from any device: iPhone, HomePod, Apple Watch, CarPlay, Mac.
@@ -251,4 +253,4 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md). Ideas for later: [`docs/future.md`](do
 
 ## License
 
-MIT. Not affiliated with Apple or Last.fm. Apple Music is a trademark of Apple Inc.
+Source-available, view and learn only. See [LICENSE](LICENSE). Not affiliated with Apple or Last.fm. Apple Music is a trademark of Apple Inc.
